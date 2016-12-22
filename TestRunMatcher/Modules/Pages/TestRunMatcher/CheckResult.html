@@ -1,0 +1,51 @@
+﻿@Master['Pages/MaterialBootstrap.html']
+
+@Section['Content']
+<div class="row" style="height: 50px"></div>
+<div class="row">
+    <div class="col s3">
+        <div class="card yellow lighten-5">
+            <div class="card-content black-text">
+                <span class="card-title">
+                    <span class="new badge" data-badge-caption="total failed">@Model.TotalOldFailedTests</span>
+                    Old failed tests
+                </span>
+                @If.HasOldFailedTests
+                @Each.OldFailedTests
+                    @Partial['Pages/TestRunMatcher/SideTestMatchColumn.html', Current]
+                @EndEach
+                @EndIf
+            </div>
+        </div>
+   </div>
+    <div class="col s6">
+        <div class="card red lighten-5">
+            <div class="card-content black-text">
+                <span class="card-title">
+                    <span class="new badge">@Model.TotalOnlyNewFailedTests</span>
+                    New failed tests not contained in old run's failed tests
+                </span>
+                @If.HasOnlyNewFailedTests
+                @Each.OnlyNewFailedTests
+                    @Partial['Pages/TestRunMatcher/CentralTestMatchColumn.html', Current]
+                @EndEach
+                @EndIf
+            </div>
+        </div>
+    </div>
+    <div class="col s3">
+        <div class="card yellow lighten-5">
+            <div class="card-content black-text">
+                <span class="card-title">
+                    <span class="new badge" data-badge-caption="total failed">@Model.TotalNewFailedTests</span>
+                    New failed tests</span>
+                @If.HasNewFailedTests
+                @Each.NewFailedTests
+                    @Partial['Pages/TestRunMatcher/SideTestMatchColumn.html', Current]
+                @EndEach
+                @EndIf
+            </div>
+        </div>
+    </div>
+</div>
+@EndSection

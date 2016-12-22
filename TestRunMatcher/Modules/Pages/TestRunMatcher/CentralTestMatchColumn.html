@@ -1,0 +1,26 @@
+﻿<div class="card">
+    <div class="card-content">
+        <span class="card-title">
+            <span class="new badge">@Model.TotalFailedTests</span>
+            @Model.BuildName
+        </span>
+        @If.HasFailedTests
+        <ul class="collapsible" data-collapsible="accordeon">
+            @Each.FailedTests
+            <li>
+                <div class="collapsible-header truncate">
+                    <a href="@Current.WebUrl" target="_blank"><i class="material-icons">open_in_new</i></a>
+                    @Current.Name
+                </div>
+                <div class="collapsible-body grey lighten-3">
+                    <p>@Current.Details</p>
+                </div>
+            </li>
+            @EndEach
+        </ul>
+        @EndIf
+        @IfNot.HasFailedTests
+        <p>No new failed tests</p>
+        @EndIf
+    </div>
+</div>

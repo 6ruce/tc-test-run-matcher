@@ -1,0 +1,18 @@
+﻿<div class="card">
+    <div class="card-content">
+        <span class="card-title">
+            <span class="new badge">@Model.TotalFailedTests</span>
+            @Model.BuildName
+        </span>
+        @If.HasFailedTests
+        <ul class="collection">
+            @Each.FailedTests
+                <li class="collection-item truncate">@Current.Name</li>
+            @EndEach
+        </ul>
+        @EndIf
+        @IfNot.HasFailedTests
+        <p>No new failed tests</p>
+        @EndIf
+    </div>
+</div>
